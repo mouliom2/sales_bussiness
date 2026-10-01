@@ -1,0 +1,5 @@
+1) Extraire complètement le ZIP.
+2) Double-cliquer sur Sales_Business_Performance_Cameroon.pbip.
+3) Si Power BI demande d'activer les fonctionnalités de projet PBIP/PBIR/TMDL, les activer puis redémarrer Power BI Desktop.
+4) Si les graphiques sont vides à la première ouverture, cliquer une fois sur Accueil > Actualiser. Les données sont intégrées au projet : aucun fichier externe n'est nécessaire.
+5) Ensuite : Fichier > Enregistrer sous > .pbix si vous souhaitez obtenir un PBIX classique.

@@ -1,0 +1,79 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.9.0/schema.json",
+  "name": "000000000000000000cc",
+  "position": {
+    "x": 24,
+    "y": 80,
+    "z": 10,
+    "height": 126,
+    "width": 1226,
+    "tabOrder": 10
+  },
+  "visual": {
+    "visualType": "cardVisual",
+    "query": {
+      "queryState": {
+        "Data": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "SalesTable"
+                    }
+                  },
+                  "Property": "Clients Actifs"
+                }
+              },
+              "queryRef": "SalesTable.Clients Actifs",
+              "nativeQueryRef": "Clients Actifs"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "SalesTable"
+                    }
+                  },
+                  "Property": "Panier Moyen"
+                }
+              },
+              "queryRef": "SalesTable.Panier Moyen",
+              "nativeQueryRef": "Panier Moyen"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "SalesTable"
+                    }
+                  },
+                  "Property": "Part Mobile Money"
+                }
+              },
+              "queryRef": "SalesTable.Part Mobile Money",
+              "nativeQueryRef": "Part Mobile Money"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "SalesTable"
+                    }
+                  },
+                  "Property": "Part B2B"
+                }
+              },
+              "queryRef": "SalesTable.Part B2B",
+              "nativeQueryRef": "Part B2B"
+            }
+          ]
+        }
+      }
+    }
+  }
+}

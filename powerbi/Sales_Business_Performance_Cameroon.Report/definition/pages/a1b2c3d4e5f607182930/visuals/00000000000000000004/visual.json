@@ -1,0 +1,93 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.9.0/schema.json",
+  "name": "00000000000000000004",
+  "position": {
+    "x": 24,
+    "y": 80,
+    "z": 10,
+    "height": 126,
+    "width": 1226,
+    "tabOrder": 10
+  },
+  "visual": {
+    "visualType": "cardVisual",
+    "query": {
+      "queryState": {
+        "Data": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "SalesTable"
+                    }
+                  },
+                  "Property": "CA Total"
+                }
+              },
+              "queryRef": "SalesTable.CA Total",
+              "nativeQueryRef": "CA Total"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "SalesTable"
+                    }
+                  },
+                  "Property": "Marge Brute"
+                }
+              },
+              "queryRef": "SalesTable.Marge Brute",
+              "nativeQueryRef": "Marge Brute"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "SalesTable"
+                    }
+                  },
+                  "Property": "Taux de Marge"
+                }
+              },
+              "queryRef": "SalesTable.Taux de Marge",
+              "nativeQueryRef": "Taux de Marge"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "SalesTable"
+                    }
+                  },
+                  "Property": "Nombre de Transactions"
+                }
+              },
+              "queryRef": "SalesTable.Nombre de Transactions",
+              "nativeQueryRef": "Nombre de Transactions"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "SalesTable"
+                    }
+                  },
+                  "Property": "Panier Moyen"
+                }
+              },
+              "queryRef": "SalesTable.Panier Moyen",
+              "nativeQueryRef": "Panier Moyen"
+            }
+          ]
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,23 @@
+# CHECKLIST POWER BI
+
+- [ ] Importer SalesTable
+- [ ] Importer StoresTable
+- [ ] Importer ProductsTable
+- [ ] Importer CustomersTable
+- [ ] Vérifier les types de données
+- [ ] Créer DateTable
+- [ ] Marquer DateTable comme table de dates
+- [ ] Créer les 4 relations 1:*
+- [ ] Créer les mesures de base
+- [ ] Créer les mesures temporelles
+- [ ] Créer les mesures Mobile Money / B2B / remises
+- [ ] Construire Page 1
+- [ ] Construire Page 2
+- [ ] Construire Page 3
+- [ ] Construire Page 4
+- [ ] Importer PowerBI_Theme_Cameroon.json
+- [ ] Vérifier les interactions des slicers
+- [ ] Formater FCFA / % / nombres
+- [ ] Vérifier les tooltips
+- [ ] Ajouter les captures au README
+- [ ] Enregistrer Sales_Business_Performance_Cameroon.pbix

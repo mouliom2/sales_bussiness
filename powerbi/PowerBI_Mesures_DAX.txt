@@ -1,0 +1,142 @@
+-- ============================================================
+-- POWER BI — SALES & BUSINESS PERFORMANCE CAMEROON
+-- Table de faits : SalesTable
+-- Dimensions : StoresTable, ProductsTable, CustomersTable
+-- Table calendrier : DateTable
+-- ============================================================
+
+-- TABLE CALENDRIER
+DateTable =
+VAR MinDate = MINX(SalesTable, SalesTable[Date])
+VAR MaxDate = MAXX(SalesTable, SalesTable[Date])
+RETURN
+ADDCOLUMNS(
+    CALENDAR(MinDate, MaxDate),
+    "Année", YEAR([Date]),
+    "Trimestre", "T" & FORMAT([Date], "Q"),
+    "MoisNo", MONTH([Date]),
+    "Mois", FORMAT([Date], "MMMM"),
+    "AnnéeMois", FORMAT([Date], "YYYY-MM"),
+    "AnnéeMoisTri", YEAR([Date]) * 100 + MONTH([Date]),
+    "Jour", DAY([Date]),
+    "JourSemaineNo", WEEKDAY([Date], 2),
+    "JourSemaine", FORMAT([Date], "dddd")
+)
+
+-- MESURES DE BASE
+CA Total =
+SUM(SalesTable[CA_Net_FCFA])
+
+Ventes Brutes =
+SUM(SalesTable[Ventes_Brutes_FCFA])
+
+Remises Totales =
+SUM(SalesTable[Montant_Remise_FCFA])
+
+Coût Total =
+SUM(SalesTable[Coût_Total_FCFA])
+
+Marge Brute =
+SUM(SalesTable[Marge_Brute_FCFA])
+
+Taux de Marge =
+DIVIDE([Marge Brute], [CA Total], 0)
+
+Nombre de Transactions =
+DISTINCTCOUNT(SalesTable[Transaction_ID])
+
+Panier Moyen =
+DIVIDE([CA Total], [Nombre de Transactions], 0)
+
+Unités Vendues =
+SUM(SalesTable[Quantité])
+
+Quantité Moyenne =
+DIVIDE([Unités Vendues], [Nombre de Transactions], 0)
+
+Clients Actifs =
+DISTINCTCOUNT(SalesTable[Customer_ID])
+
+CA par Client =
+DIVIDE([CA Total], [Clients Actifs], 0)
+
+Taux de Remise Global =
+DIVIDE([Remises Totales], [Ventes Brutes], 0)
+
+-- TIME INTELLIGENCE
+CA YTD =
+TOTALYTD([CA Total], DateTable[Date])
+
+CA Année Précédente =
+CALCULATE([CA Total], SAMEPERIODLASTYEAR(DateTable[Date]))
+
+Variation CA YoY =
+[CA Total] - [CA Année Précédente]
+
+Variation CA YoY % =
+DIVIDE([Variation CA YoY], [CA Année Précédente], 0)
+
+CA Mois Précédent =
+CALCULATE([CA Total], DATEADD(DateTable[Date], -1, MONTH))
+
+Variation CA MoM =
+[CA Total] - [CA Mois Précédent]
+
+Variation CA MoM % =
+DIVIDE([Variation CA MoM], [CA Mois Précédent], 0)
+
+Marge Année Précédente =
+CALCULATE([Marge Brute], SAMEPERIODLASTYEAR(DateTable[Date]))
+
+Variation Marge YoY % =
+DIVIDE([Marge Brute] - [Marge Année Précédente], [Marge Année Précédente], 0)
+
+-- MOBILE MONEY, CANAUX ET REMISES
+CA Mobile Money =
+CALCULATE([CA Total], SalesTable[Mode_Paiement] IN {"MTN MoMo", "Orange Money"})
+
+Part Mobile Money =
+DIVIDE([CA Mobile Money], [CA Total], 0)
+
+CA B2B =
+CALCULATE([CA Total], SalesTable[Canal] = "B2B")
+
+Part B2B =
+DIVIDE([CA B2B], [CA Total], 0)
+
+Transactions Avec Remise =
+CALCULATE([Nombre de Transactions], SalesTable[Taux_Remise] > 0)
+
+Part Transactions Avec Remise =
+DIVIDE([Transactions Avec Remise], [Nombre de Transactions], 0)
+
+CA Avec Remise =
+CALCULATE([CA Total], SalesTable[Taux_Remise] > 0)
+
+Marge Avec Remise =
+CALCULATE([Marge Brute], SalesTable[Taux_Remise] > 0)
+
+Taux Marge Avec Remise =
+DIVIDE([Marge Avec Remise], [CA Avec Remise], 0)
+
+-- CONTRIBUTIONS ET CLASSEMENTS
+Part CA Ville =
+DIVIDE([CA Total], CALCULATE([CA Total], ALL(StoresTable[Ville])), 0)
+
+Part CA Catégorie =
+DIVIDE([CA Total], CALCULATE([CA Total], ALL(ProductsTable[Catégorie])), 0)
+
+Rang Produit CA =
+RANKX(ALL(ProductsTable[Produit]), [CA Total], , DESC, DENSE)
+
+Rang Commercial CA =
+RANKX(ALL(SalesTable[Commercial]), [CA Total], , DESC, DENSE)
+
+-- TITRES DYNAMIQUES
+Titre Période =
+VAR AnneeChoisie = SELECTEDVALUE(DateTable[Année], "Toutes les années")
+RETURN "Performance commerciale — " & AnneeChoisie
+
+Titre Ville =
+VAR VilleChoisie = SELECTEDVALUE(StoresTable[Ville], "Toutes les villes")
+RETURN "Analyse — " & VilleChoisie

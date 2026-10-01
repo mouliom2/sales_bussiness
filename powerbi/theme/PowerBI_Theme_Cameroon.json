@@ -1,0 +1,16 @@
+{
+  "name": "Cameroon Business Analytics",
+  "dataColors": [
+    "#1F4E78",
+    "#2F75B5",
+    "#70AD47",
+    "#ED7D31",
+    "#A5A5A5",
+    "#FFC000",
+    "#5B9BD5",
+    "#4472C4"
+  ],
+  "background": "#F7F9FC",
+  "foreground": "#1F1F1F",
+  "tableAccent": "#1F4E78"
+}

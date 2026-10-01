@@ -1,0 +1,56 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.9.0/schema.json",
+  "name": "000000000000000000cd",
+  "position": {
+    "x": 24,
+    "y": 225,
+    "z": 5,
+    "height": 220,
+    "width": 390,
+    "tabOrder": 5
+  },
+  "visual": {
+    "visualType": "clusteredColumnChart",
+    "query": {
+      "queryState": {
+        "Category": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "SalesTable"
+                    }
+                  },
+                  "Property": "Segment_Client"
+                }
+              },
+              "queryRef": "SalesTable.Segment_Client",
+              "nativeQueryRef": "Segment_Client",
+              "active": true
+            }
+          ]
+        },
+        "Y": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "SalesTable"
+                    }
+                  },
+                  "Property": "CA Total"
+                }
+              },
+              "queryRef": "SalesTable.CA Total",
+              "nativeQueryRef": "CA Total"
+            }
+          ]
+        }
+      }
+    }
+  }
+}
